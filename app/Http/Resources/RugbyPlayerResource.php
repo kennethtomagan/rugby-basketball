@@ -36,7 +36,6 @@ class RugbyPlayerResource extends JsonResource
             "weight"        => $this->weight,
             "penalties"     => $this->penalties,
             "image"         => $image,
-            "game_type"     => 'rugby',
             "featured"      => [
                 ['label' => 'Points',   'value' => $this->points],
                 ['label' => 'Games',    'value' => $this->games],

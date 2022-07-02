@@ -19,11 +19,10 @@ class NbaRepository extends PlayerRepository implements NbaRepositoryInterface
     {
         $response = $this->getPlayers(null, 'nba');
 
-        // Format API to RugbyPlayer collection 
+        // Format API to NbaPlayer collection 
         $players = collect();
         foreach ($response as $key => $player) {
             $player = collect($player);
-            $player->put('game_type',  'nba');
             $players->add(new NbaPlayer($player));
         }
         return $players;
@@ -39,9 +38,8 @@ class NbaRepository extends PlayerRepository implements NbaRepositoryInterface
     {
         $response = $this->getPlayers($id, 'nba');
         
-        // Format API to RugbyPlayer collection
+        // Format API to NbaPlayer collection
         $data = collect(array_shift($response));
-        $data->put('game_type',  'rugby');
         $player = new NbaPlayer($data);
 
         return $player;

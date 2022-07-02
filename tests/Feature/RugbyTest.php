@@ -40,7 +40,6 @@ class Rugbytest extends TestCase
                     "weight",
                     "penalties",
                     "image",
-                    "game_type",
                     "featured"
                 ],
             ],
@@ -73,7 +72,6 @@ class Rugbytest extends TestCase
                     "weight",
                     "penalties",
                     "image",
-                    "game_type",
                     "featured"
                 ],
             ]);

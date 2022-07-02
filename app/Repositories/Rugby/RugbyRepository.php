@@ -40,7 +40,6 @@ class RugbyRepository extends PlayerRepository implements RugbyRepositoryInterfa
         
         // Format API to RugbyPlayer collection
         $data = collect(array_shift($response));
-        $data->put('game_type',  'rugby');
         $player = new RugbyPlayer($data);
 
         return $player;
