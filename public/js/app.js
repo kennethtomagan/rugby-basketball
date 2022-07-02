@@ -20872,7 +20872,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".menu-player[data-v-3e6f69df] {\n  right: -38px;\n  list-style: none;\n  bottom: 0px;\n  position: absolute;\n}\n.menu-player li[data-v-3e6f69df] {\n  writing-mode: vertical-rl;\n  text-orientation: mixed;\n  writing-mode: vertical-rl;\n  text-orientation: mixed;\n  padding: 8px 5px;\n  background: black;\n  color: #fff;\n  font-size: 18px;\n  font-weight: 700;\n  cursor: pointer;\n}\n.menu-player li.active[data-v-3e6f69df] {\n  background: #DFE1E8;\n  color: #000;\n}\n#overlay[data-v-3e6f69df] {\n  position: absolute;\n  display: flex;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  background-color: rgba(0, 0, 0, 0.5);\n  z-index: 100;\n  cursor: pointer;\n  height: 100%;\n  width: 100%;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".menu-player[data-v-3e6f69df] {\n  right: -38px;\n  list-style: none;\n  bottom: 0px;\n  position: absolute;\n}\n.menu-player li[data-v-3e6f69df] {\n  writing-mode: vertical-rl;\n  text-orientation: mixed;\n  writing-mode: vertical-rl;\n  text-orientation: mixed;\n  padding: 8px 5px;\n  background: black;\n  color: #fff;\n  font-size: 18px;\n  font-weight: 700;\n  cursor: pointer;\n}\n.menu-player li.active[data-v-3e6f69df] {\n  background: #DFE1E8;\n  color: #000;\n}\n#overlay[data-v-3e6f69df] {\n  position: absolute;\n  display: flex;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  z-index: 100;\n  height: 100%;\n  width: 100%;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -20896,7 +20896,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".menu-player[data-v-305dacdf] {\n  right: -38px;\n  list-style: none;\n  bottom: 0px;\n  position: absolute;\n}\n.menu-player li[data-v-305dacdf] {\n  writing-mode: vertical-rl;\n  text-orientation: mixed;\n  writing-mode: vertical-rl;\n  text-orientation: mixed;\n  padding: 8px 5px;\n  background: black;\n  color: #fff;\n  font-size: 18px;\n  font-weight: 700;\n  cursor: pointer;\n}\n.menu-player li.active[data-v-305dacdf] {\n  background: #DFE1E8;\n  color: #000;\n}\n#overlay[data-v-305dacdf] {\n  position: absolute;\n  display: flex;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  background-color: rgba(0, 0, 0, 0.5);\n  z-index: 100;\n  cursor: pointer;\n  height: 100%;\n  width: 100%;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".menu-player[data-v-305dacdf] {\n  right: -38px;\n  list-style: none;\n  bottom: 0px;\n  position: absolute;\n}\n.menu-player li[data-v-305dacdf] {\n  writing-mode: vertical-rl;\n  text-orientation: mixed;\n  writing-mode: vertical-rl;\n  text-orientation: mixed;\n  padding: 8px 5px;\n  background: black;\n  color: #fff;\n  font-size: 18px;\n  font-weight: 700;\n  cursor: pointer;\n}\n.menu-player li.active[data-v-305dacdf] {\n  background: #DFE1E8;\n  color: #000;\n}\n#overlay[data-v-305dacdf] {\n  position: absolute;\n  display: flex;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  z-index: 100;\n  height: 100%;\n  width: 100%;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
