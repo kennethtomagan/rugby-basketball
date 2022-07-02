@@ -50,9 +50,15 @@ class RugbyPlayerController extends Controller
     public function show($id)
     {
         $player = $this->repository->findRugbyPlayerById($id);
-
+    
+        if (!$player->id) {
+            // return error when player is not found
+            return response()->json([
+                'error' => 'Rugby Player Not Found'
+            ], 404);
+        }
+    
         // transform Player data
-        
         $data = new RugbyPlayerResource($player); 
         
         return response()->json(compact('data'));

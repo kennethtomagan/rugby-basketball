@@ -52,8 +52,14 @@ class NbaPlayerController extends Controller
     {
         $player = $this->repository->findNbaPlayerById($id);
 
+        if (!$player->id) {
+            // return error when player is not found
+            return response()->json([
+                'error' => 'Nba Player Not Found'
+            ], 404);
+        }
+    
         // transform Player data
-        
         $data = new NbaPlayerResource($player); 
         
         return response()->json(compact('data'));
