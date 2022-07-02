@@ -1,0 +1,15 @@
+#app {
+    /* width: 100%; */
+    /* max-width: 950px;
+    height: 100%;
+    max-height: 620px;
+    display: grid;
+    grid-template-rows: auto 1fr; */
+}
+
+.card {
+    height: 520px;
+}
+.card .name {
+    left: 0px;
+}
