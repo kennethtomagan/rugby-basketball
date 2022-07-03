@@ -18,6 +18,7 @@ class PlayerRepository implements PlayerRepositoryInterface
      * Nba player API Endpoint
      */
     private $nbaEndpoint;
+    private $nbaStatsEndpoint;
 
 	/**
      * PlayerRepository constructor.
@@ -26,6 +27,7 @@ class PlayerRepository implements PlayerRepositoryInterface
     {
         $this->rugbyEndpoint    = config('player.rugby.url');
         $this->nbaEndpoint      = config('player.nba.player.url');
+        $this->nbaStatsEndpoint      = config('player.nba.stats.url');
     }
 
     /**
@@ -55,4 +57,22 @@ class PlayerRepository implements PlayerRepositoryInterface
         return $response;
     }
 
+    /**
+     * Retrieve player stats data from the API
+     *
+     * @param int $id
+     * @param string $type
+     * 
+     * @return Array
+     */
+    public function getPlayerStats(int $id = null): Array
+    {
+        $apiEndpoint = $id ? $this->nbaStatsEndpoint ."/player_id/$id" : $this->nbaStatsEndpoint;
+
+        $response = Http::get($apiEndpoint, [
+            'API_KEY' => config('api.key'),
+        ])->json();
+
+        return $response;
+    }
 }

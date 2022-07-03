@@ -19864,6 +19864,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     var loading = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(false);
     var selectedPlayer = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)({});
     var playerMenu = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)([]);
+    var selectedPlayerStats = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)([]);
     (0,vue__WEBPACK_IMPORTED_MODULE_1__.onMounted)(function () {
       getPlayers();
     });
@@ -19910,10 +19911,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return axios__WEBPACK_IMPORTED_MODULE_0___default()({
                   url: '/api/nba'
                 }).then(function (res) {
-                  var _res$data, _res$data2;
+                  var _res$data, _res$data2, _res$data3;
 
                   players.value = (_res$data = res.data) === null || _res$data === void 0 ? void 0 : _res$data.data;
                   selectedPlayer.value = (_res$data2 = res.data) === null || _res$data2 === void 0 ? void 0 : _res$data2.data[0];
+                  getPlayerStatsById((_res$data3 = res.data) === null || _res$data3 === void 0 ? void 0 : _res$data3.data[0].id);
                 });
 
               case 3:
@@ -19944,9 +19946,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return axios__WEBPACK_IMPORTED_MODULE_0___default()({
                   url: '/api/nba/' + $id
                 }).then(function (res) {
-                  var _res$data3;
+                  var _res$data4;
 
-                  selectedPlayer.value = (_res$data3 = res.data) === null || _res$data3 === void 0 ? void 0 : _res$data3.data;
+                  selectedPlayer.value = (_res$data4 = res.data) === null || _res$data4 === void 0 ? void 0 : _res$data4.data;
                 });
 
               case 3:
@@ -19976,6 +19978,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return getPlayerById($id);
 
               case 2:
+                _context3.next = 4;
+                return getPlayerStatsById($id);
+
+              case 4:
               case "end":
                 return _context3.stop();
             }
@@ -19985,14 +19991,68 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       return _changeActivePlayer.apply(this, arguments);
     }
 
+    function getPlayerStatsById(_x3) {
+      return _getPlayerStatsById.apply(this, arguments);
+    }
+
+    function _getPlayerStatsById() {
+      _getPlayerStatsById = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4($id) {
+        return _regeneratorRuntime().wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                loading.value = true;
+                _context4.next = 3;
+                return axios__WEBPACK_IMPORTED_MODULE_0___default()({
+                  url: '/api/nba/stats/player_id/' + $id
+                }).then(function (res) {
+                  var _res$data5, _res$data6;
+
+                  console.log((_res$data5 = res.data) === null || _res$data5 === void 0 ? void 0 : _res$data5.data);
+                  selectedPlayerStats.value = (_res$data6 = res.data) === null || _res$data6 === void 0 ? void 0 : _res$data6.data;
+                });
+
+              case 3:
+                loading.value = false;
+
+              case 4:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4);
+      }));
+      return _getPlayerStatsById.apply(this, arguments);
+    }
+
+    function _calculateAge(birthday) {
+      if (!birthday) {
+        return null;
+      }
+
+      var birthdate = new Date(birthday);
+      var ageDifMs = Date.now() - birthdate.getTime();
+      var ageDate = new Date(ageDifMs); // miliseconds from epoch
+
+      return Math.abs(ageDate.getUTCFullYear() - 1970) + ' Years Old';
+    }
+
+    function _getHeight(selectedPlayer) {
+      return selectedPlayer.feet + "'" + selectedPlayer.inches + '"';
+    }
+
     var __returned__ = {
       players: players,
       loading: loading,
       selectedPlayer: selectedPlayer,
       playerMenu: playerMenu,
+      selectedPlayerStats: selectedPlayerStats,
       getPlayers: getPlayers,
       getPlayerById: getPlayerById,
       changeActivePlayer: changeActivePlayer,
+      getPlayerStatsById: getPlayerStatsById,
+      _calculateAge: _calculateAge,
+      _getHeight: _getHeight,
       axios: (axios__WEBPACK_IMPORTED_MODULE_0___default()),
       onMounted: vue__WEBPACK_IMPORTED_MODULE_1__.onMounted,
       computed: vue__WEBPACK_IMPORTED_MODULE_1__.computed,
@@ -20400,6 +20460,7 @@ var _hoisted_9 = {
 };
 var _hoisted_10 = ["src"];
 var _hoisted_11 = {
+  key: 1,
   "class": "features"
 };
 var _hoisted_12 = {
@@ -20487,13 +20548,14 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* TEXT */
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("strong", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.selectedPlayer.last_name), 1
   /* TEXT */
-  )])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+  )])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [!$setup.loading ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("img", {
+    key: 0,
     src: '/images/players/nba/' + ((_$setup$selectedPlaye = $setup.selectedPlayer) === null || _$setup$selectedPlaye === void 0 ? void 0 : _$setup$selectedPlaye.image),
     alt: "Aaron Smith",
     "class": "headshot"
   }, null, 8
   /* PROPS */
-  , _hoisted_10), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.selectedPlayer.featured, function (feature) {
+  , _hoisted_10)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !$setup.loading ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_11, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.selectedPlayerStats.featured, function (feature) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
       "class": "feature",
       key: feature.label
@@ -20504,13 +20566,13 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     )]);
   }), 128
   /* KEYED_FRAGMENT */
-  ))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [_hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.selectedPlayer.position), 1
+  ))])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [_hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.loading ? '...' : $setup.selectedPlayer.position), 1
   /* TEXT */
-  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [_hoisted_16, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.selectedPlayer.weight), 1
+  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [_hoisted_16, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.loading ? '...' : $setup.selectedPlayer.weight), 1
   /* TEXT */
-  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [_hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.selectedPlayer.height), 1
+  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [_hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.loading ? '...' : $setup._getHeight($setup.selectedPlayer)), 1
   /* TEXT */
-  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [_hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.selectedPlayer.age), 1
+  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [_hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.loading ? '...' : $setup._calculateAge($setup.selectedPlayer.birthday)), 1
   /* TEXT */
   )])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.playerMenu, function (player, i) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", {

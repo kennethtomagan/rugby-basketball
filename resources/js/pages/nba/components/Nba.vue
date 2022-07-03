@@ -17,9 +17,9 @@
                     <h2>{{selectedPlayer.first_name}} <strong>{{selectedPlayer.last_name}} </strong></h2>
                 </div>
                 <div class="profile">
-                    <img :src="'/images/players/nba/' + selectedPlayer?.image" alt="Aaron Smith" class="headshot">
-                    <div class="features">
-                        <div class="feature" v-for="feature in selectedPlayer.featured" :key="feature.label">
+                    <img v-if="!loading" :src="'/images/players/nba/' + selectedPlayer?.image" alt="Aaron Smith" class="headshot">
+                    <div class="features" v-if="!loading">
+                        <div class="feature" v-for="feature in selectedPlayerStats.featured" :key="feature.label">
                             <h3>{{feature.label}}</h3>
                             {{feature.value}}
                         </div>
@@ -28,19 +28,19 @@
                 <div class="bio">
                     <div class="data">
                         <strong>Position</strong>
-                        {{selectedPlayer.position}}
+                        {{loading ? '...' : selectedPlayer.position}}
                     </div>
                     <div class="data">
                         <strong>Weight</strong>
-                        {{selectedPlayer.weight}}
+                        {{loading ? '...' : selectedPlayer.weight}}
                     </div>
                     <div class="data">
                         <strong>Height</strong>
-                        {{selectedPlayer.height}}
+                        {{loading ? '...' : _getHeight(selectedPlayer)}}
                     </div>
                     <div class="data">
                         <strong>Age</strong>
-                        {{selectedPlayer.age}}
+                        {{loading ? '...' :_calculateAge(selectedPlayer.birthday)}}
                     </div>
                 </div>
                 <div class="menu-player">
@@ -70,6 +70,7 @@
     const loading = ref(false)
     const selectedPlayer = ref({});
     const playerMenu = ref([]);
+    const selectedPlayerStats = ref([]);
 
     onMounted(() => {
         getPlayers()
@@ -110,6 +111,7 @@
         .then((res) => {
             players.value = res.data?.data
             selectedPlayer.value = res.data?.data[0]
+            getPlayerStatsById(res.data?.data[0].id)
         });
         loading.value = false;
     }
@@ -127,7 +129,35 @@
 
     async function changeActivePlayer($id) {
         await getPlayerById($id)
+        await getPlayerStatsById($id)
     }
+
+    async function getPlayerStatsById($id) {
+        loading.value = true;
+        await axios({
+            url: '/api/nba/stats/player_id/' + $id
+        })
+        .then((res) => {
+            console.log( res.data?.data)
+            selectedPlayerStats.value = res.data?.data
+        });
+        loading.value = false;
+    }
+
+    function _calculateAge(birthday) {
+        if(!birthday) {
+            return null;
+        }
+        const birthdate = new Date(birthday)
+        var ageDifMs = Date.now() - birthdate.getTime();
+        var ageDate = new Date(ageDifMs); // miliseconds from epoch
+        return Math.abs(ageDate.getUTCFullYear() - 1970) + ' Years Old';
+    }
+
+    function _getHeight(selectedPlayer) { 
+        return selectedPlayer.feet + "'" +selectedPlayer.inches  +'"'
+    }
+    
 </script>
 
 <style scoped lang="scss">

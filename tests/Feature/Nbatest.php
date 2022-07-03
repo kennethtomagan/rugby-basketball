@@ -10,7 +10,6 @@ class Nbatest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        
     }
 
     /**
@@ -43,7 +42,7 @@ class Nbatest extends TestCase
     }
 
     /**
-     * Test structure of response.
+     * Test structure of response of nba route by id.
      * 
      * @return void
      */
@@ -121,5 +120,65 @@ class Nbatest extends TestCase
         $response = $this->get('api/nba/12345678');
         $response->assertStatus(404);
         $response->assertExactJson(["error" => "Nba Player Not Found"]);
+    }
+    
+    /**
+     * Test structure of response of nba stats route.
+     * 
+     * @return void
+     */
+    public function testNbaStatsRouteResponseStructure()
+    {
+        $response = $this->get('api/nba/stats');
+        $response->assertStatus(200);
+        
+        $response->assertJsonStructure([
+            'data' => [
+                [
+                    "id",
+                    "games",
+                    "assists",
+                    "points",
+                    "player_id",
+                    "rebounds",
+                    "featured",
+                ],
+            ],
+        ]);
+    }
+
+    /**
+     * Test structure of response of nba stats route by id.
+     * 
+     * @return void
+     */
+    public function testNbaStatsByIdRouteResponseStructure()
+    {
+        $response = $this->get('api/nba/stats/player_id/1');
+        $response->assertStatus(200);
+        
+        $response->assertJsonStructure([
+            'data' => [
+                "id",
+                "games",
+                "assists",
+                "points",
+                "player_id",
+                "rebounds",
+                "featured",
+            ],
+        ]);
+    }
+
+    /**
+     * Test structure of response of nba stats route by id.
+     * 
+     * @return void
+     */
+    public function testNbaStatsByIdRouteButPlayerNotFdund()
+    {
+        $response = $this->get('api/nba/stats/player_id/123456789');
+        $response->assertStatus(404);
+        $response->assertExactJson(["error" => "Player Stats Not Found"]);
     }
 }

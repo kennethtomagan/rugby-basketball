@@ -25,5 +25,7 @@ Route::group(['namespace' => 'Rugby'], function () {
 
 Route::group(['namespace' => 'Nba'], function () {
     Route::get('nba', 'NbaPlayerController@index');
+    Route::get('nba/stats', 'NbaPlayerStatsController@index');
     Route::get('nba/{id}', 'NbaPlayerController@show');
+    Route::get('nba/stats/player_id/{id}', 'NbaPlayerStatsController@show');
 });
